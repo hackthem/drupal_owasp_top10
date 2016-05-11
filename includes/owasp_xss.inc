@@ -18,7 +18,7 @@ function owasp_xss_form() {
 
         $form['basicdetails']['name']=array(
             '#type'=>'textfield',
-            '#title'=>t('Enter your name'),
+            '#title'=>t('Enter your first name'),
             '#default_value'=> '<script>alert(\'hacked\');</script>',
             '#description'=>t('Your first name goes here')
           );
@@ -70,7 +70,7 @@ function owasp_xss_form() {
         $form['additionaldetails']['gender']=array(
             '#type'=>'radios',
             '#title'=>t('Gender'),
-	    '#default_value' => 0,
+	    	'#default_value' => 0,
             '#options'=>array('Male','Female')
           );
 
@@ -103,12 +103,8 @@ function owasp_xss_form() {
 	$form['securityCheck']['validators']=array(
 		    '#type'=>'checkboxes',
 		    '#title'=>t('I want to activate'),
-		    '#options'=>array('XSS Filter'=>t('XSS Filter'),'CSRF Token'=>t('CSRF Token'))
+		    '#options'=>array('XSS Filter'=>t('XSS Filter'))
 		  );
-
-
-
-
 
 
 	    $form['submit']=array(
@@ -120,13 +116,7 @@ function owasp_xss_form() {
 }
 
 
-function owasp_xss_form_submit($form, $form_state) {
-   //Depending on the type of form you can add the logic
-   //to store the details of the form
-   //by adding it in a Drupal table.
-   //or sending a mail to the admin
-   //Storing in a file
-   //or pass it to some other service
+function owasp_xss_form_submit($form, $form_state) {   
 
 	$result="Name= ".$form_state['values']['name']." <br/>";
 	$result .="Last Name= ".$form_state['values']['last_name']." <br/>";
@@ -139,8 +129,7 @@ function owasp_xss_form_submit($form, $form_state) {
 
 
 	$result .="Gender= ".$form['additionaldetails']['gender']['#options'][$form_state['values']['gender']]." <br/>";
-	//$result .="Suscribtion= ".$form_state['values']['suscribtion']['#options'][$form_state['values']['suscribtion']]." <br/>";
-
+	
 	foreach($form_state['values']['suscribtion'] as $key=>$choice){
 	if(!empty($form['additionaldetails']['suscribtion']['#options'][$choice])){
 	$result .="Suscribtion= ".$form['additionaldetails']['suscribtion']['#options'][$choice]." <br/>";
@@ -162,9 +151,6 @@ function owasp_xss_form_submit($form, $form_state) {
 	//$result .="Suscribtion= ".$form_state['values']['suscribtion']['Email newsletter']." <br/>";
 	//$result .="Picture= ".$form_state['values']['picture']." <br/>";
 
-
-
-	   ///dpm($form_state);
 	  drupal_set_message($result);
 }
 
@@ -184,26 +170,17 @@ function owasp_xss_form_validate($form,&$form_state) {
  
   foreach($form_state['values']['validators'] as $key=>$choice)
         {
-	if(!empty($form['securityCheck']['validators']['#options'][$choice]))
+	if(!empty($form['securityCheck']['validators']['#options'][$choice]) && $form['securityCheck']['validators']['#options'][$choice]==='XSS Filter')
                 {
-		$filter=$form['securityCheck']['validators']['#options'][$choice];
-
-		switch($filter){
-
-			case 'XSS Filter' :                  
+		            
 
 				  $form_state['values']['name']=filter_xss($form_state['values']['name']);
 				  $form_state['values']['last_name']=filter_xss($form_state['values']['last_name']);
 				  $form_state['values']['city']=filter_xss($form_state['values']['city']);
 				  $form_state['values']['localaddress']=filter_xss($form_state['values']['localaddress']); 
-				  break;
-
-			case 'CSRF Token': 
-		 
-				   form_set_error( 'validators','CSRF Token not yet implemented');
-				   break;
-                                 }
-		}
+				   
+                               
+				}
 
          }
 }

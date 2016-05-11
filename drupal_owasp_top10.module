@@ -5,11 +5,7 @@
  * This is the main module file.
  */
 
-
-//include_once 'owasp_xss.inc';
-//include_once 'owasp_sqli.inc';
-//include_once 'owasp_csrf.inc';
-//include_once 'owasp_no_csrf.inc';
+ 
 
  /**
  * Implements hook_help().
