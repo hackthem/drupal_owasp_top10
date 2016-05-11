@@ -97,13 +97,13 @@ function owasp_xss_form() {
 	$form['securityCheck']=array(
 		'#type'=>'fieldset',
 		'#title'=>t('Choose your security valivators'),
-		'#description'=>t('These are for security checks (best pratices) :<br>XSS Filter uses the function filter_xss()')
+		'#description'=>t('These are for security checks (best pratices) :<br>filter_xss() : filters HTML to prevent XSS.<br>check_plain() : encodes special characters in a plain-text string for display as HTML.<br>check_url() : strips dangerous protocols from URI and encodes it for output to HTML.')
 	      );
 
 	$form['securityCheck']['validators']=array(
-		    '#type'=>'checkboxes',
-		    '#title'=>t('I want to activate'),
-		    '#options'=>array('XSS Filter'=>t('XSS Filter'))
+		    '#type'=>'radios',
+		    '#title'=>t('I want to use'),
+		    '#options'=>array('No filter','filter_xss()','check_plain()','check_url()')
 		  );
 
 
@@ -170,16 +170,39 @@ function owasp_xss_form_validate($form,&$form_state) {
  
   foreach($form_state['values']['validators'] as $key=>$choice)
         {
-	if(!empty($form['securityCheck']['validators']['#options'][$choice]) && $form['securityCheck']['validators']['#options'][$choice]==='XSS Filter')
+	if(!empty($form['securityCheck']['validators']['#options'][$choice]))
                 {
 		            
-
+			switch ($form['securityCheck']['validators']['#options'][$choice]) {
+				
+				case 'filter_xss()' :
+					
 				  $form_state['values']['name']=filter_xss($form_state['values']['name']);
 				  $form_state['values']['last_name']=filter_xss($form_state['values']['last_name']);
 				  $form_state['values']['city']=filter_xss($form_state['values']['city']);
 				  $form_state['values']['localaddress']=filter_xss($form_state['values']['localaddress']); 
-				   
-                               
+				  break ;
+				  
+				case 'check_plain()' :
+					
+				  $form_state['values']['name']=check_plain($form_state['values']['name']);
+				  $form_state['values']['last_name']=check_plain($form_state['values']['last_name']);
+				  $form_state['values']['city']=check_plain($form_state['values']['city']);
+				  $form_state['values']['localaddress']=check_plain($form_state['values']['localaddress']);
+				  break ;
+				  	
+				case 'check_url()' :
+					
+				  $form_state['values']['name']=check_url($form_state['values']['name']);
+				  $form_state['values']['last_name']=check_url($form_state['values']['last_name']);
+				  $form_state['values']['city']=check_url($form_state['values']['city']);
+				  $form_state['values']['localaddress']=check_url($form_state['values']['localaddress']);
+				  break ;
+				  			
+				  	
+				  	
+				  	
+					}           
 				}
 
          }
