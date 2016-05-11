@@ -1,0 +1,4 @@
+name = drupal_owasp_top10
+description = This module implements the OWASP TOP 10 vulnerabilities under Drupal7.
+core = 7.x
+
