@@ -102,6 +102,7 @@ function owasp_xss_form() {
 
 	$form['securityCheck']['validators']=array(
 		    '#type'=>'radios',
+			'#default_value' => 0,
 		    '#title'=>t('I want to use'),
 		    '#options'=>array('No filter','filter_xss()','check_plain()','check_url()')
 		  );
@@ -138,12 +139,12 @@ function owasp_xss_form_submit($form, $form_state) {
 
 	}
 
-	foreach($form_state['values']['validators'] as $key=>$choice){
+// 	foreach($form_state['values']['validators'] as $key=>$choice){
 
-	if(!empty($form['securityCheck']['validators']['#options'][$choice])){
-	$result .="Security Check= ".$form['securityCheck']['validators']['#options'][$choice]." <br/>";
-	}
-	}
+// 	if(!empty($form['securityCheck']['validators']['#options'][$choice])){
+	$result .="Security Check= ".$form['securityCheck']['validators']['#options'][$form_state['values']['validators']]." <br/>";
+// 	}
+// 	}
 
 
 	//$result .="Birth Date= ".$form_state['values']['birthdate'][0]." <br/>";
@@ -168,12 +169,12 @@ function owasp_xss_form_validate($form,&$form_state) {
     form_set_error('email','Email is not valid');
 
  
-  foreach($form_state['values']['validators'] as $key=>$choice)
-        {
-	if(!empty($form['securityCheck']['validators']['#options'][$choice]))
-                {
+//   foreach($form_state['values']['validators'] as $key=>$choice)
+//         {
+// 	if(!empty($form['securityCheck']['validators']['#options'][$choice]))
+//                 {
 		            
-			switch ($form['securityCheck']['validators']['#options'][$choice]) {
+			switch ($form['securityCheck']['validators']['#options'][$form_state['values']['validators']]) {
 				
 				case 'filter_xss()' :
 					
@@ -199,11 +200,13 @@ function owasp_xss_form_validate($form,&$form_state) {
 				  $form_state['values']['localaddress']=check_url($form_state['values']['localaddress']);
 				  break ;
 				  			
+				default :
+
+					break;
 				  	
 				  	
-				  	
-					}           
-				}
+// 					}           
+// 				}
 
          }
 }
