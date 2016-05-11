@@ -27,7 +27,7 @@ function drupal_owasp_top10_help($path, $arg) {
 function drupal_owasp_top10_menu() {
 
 $items['owasp'] = array(
-	'title' => 'TOP 10 OWASP',       
+	'title' => 'OWASP TOP 10',       
 	'page callback' => 'owasp_page_callback',
 	'access callback' => TRUE,
 	'type' => MENU_NORMAL_ITEM
