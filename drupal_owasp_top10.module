@@ -28,7 +28,7 @@ function drupal_owasp_top10_menu() {
 
 $items['owasp'] = array(
 	'title' => 'TOP 10 OWASP',       
-	'page callback' => array('owasp_page_callback'),
+	'page callback' => 'owasp_page_callback',
 	'access callback' => TRUE,
 	'type' => MENU_NORMAL_ITEM
          
@@ -55,6 +55,14 @@ $items['owasp/SQL Injection'] = array(
 	'file path' => drupal_get_path('module', 'drupal_owasp_top10') . '/includes',
 	'type' => MENU_NORMAL_ITEM
         );
+
+$items['owasp/CSRF'] = array(
+		'title' => 'CSRF',
+		'access callback' => TRUE,
+		'access arguments' => array('access content'),
+		'page callback' => 'owasp_csrf_page_callback',		 
+		'type' => MENU_NORMAL_ITEM
+);
 
 $items['owasp/CSRF/csrf_using_anonymous_form'] = array(
 	'title' => 'CSRF (anonymous form)',        
@@ -90,7 +98,15 @@ $result = "Ce projet consiste à implémenter l'ensemble du TOP 10 OWASP sous Dr
 
 }
 
- 
+function owasp_csrf_page_callback(){
+
+	$result = "Sous Drupal, le token anti-csrf 'form_token' est intégré systématiquement dans les formulaires accessibles en mode authentifié. Conformément aux recommandations de 'OWASP CSRF' Drupal utilise le champ 'form_token' pour se prémunir contre les attaques CSRF. 
+	<br>Ce jeton (form_token) est lié à la session de l'utilisateur actuel et au 'form_id' du formulaire.
+	<br>Concernant les formulaires anonymes (accessibles en mode non authentifiés), ils sont vulnérables aux attaques CSRF étant donné l'bsencce de session. De toutes façon cela n'a aucun sens d'avoir des formulaires anonymes ou d'implémenter un token anti-csrf pour ces derniers."
+
+	return $result;
+
+}
  
 
 
