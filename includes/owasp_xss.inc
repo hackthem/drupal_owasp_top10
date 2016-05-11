@@ -97,7 +97,7 @@ function owasp_xss_form() {
 	$form['securityCheck']=array(
 		'#type'=>'fieldset',
 		'#title'=>t('Choose your security valivators'),
-		'#description'=>t('These are for security checks (best pratices) :<br>filter_xss() : filters HTML to prevent XSS.<br>check_plain() : encodes special characters in a plain-text string for display as HTML.<br>check_url() : strips dangerous protocols from URI and encodes it for output to HTML.')
+		'#description'=>t('These are for security checks (best pratices) :<br><b><u>filter_xss()</u></b> : filters HTML to prevent XSS.<br><b><u>check_plain()</u></b> : encodes special characters in a plain-text string for display as HTML.<br><b><u>check_url()</u></b> : strips dangerous protocols from URI and encodes it for output to HTML.')
 	      );
 
 	$form['securityCheck']['validators']=array(
@@ -139,12 +139,9 @@ function owasp_xss_form_submit($form, $form_state) {
 
 	}
 
-// 	foreach($form_state['values']['validators'] as $key=>$choice){
-
-// 	if(!empty($form['securityCheck']['validators']['#options'][$choice])){
+ 
 	$result .="Security Check= ".$form['securityCheck']['validators']['#options'][$form_state['values']['validators']]." <br/>";
-// 	}
-// 	}
+ 
 
 
 	//$result .="Birth Date= ".$form_state['values']['birthdate'][0]." <br/>";
@@ -169,10 +166,7 @@ function owasp_xss_form_validate($form,&$form_state) {
     form_set_error('email','Email is not valid');
 
  
-//   foreach($form_state['values']['validators'] as $key=>$choice)
-//         {
-// 	if(!empty($form['securityCheck']['validators']['#options'][$choice]))
-//                 {
+ 
 		            
 			switch ($form['securityCheck']['validators']['#options'][$form_state['values']['validators']]) {
 				
@@ -204,10 +198,7 @@ function owasp_xss_form_validate($form,&$form_state) {
 
 					break;
 				  	
-				  	
-// 					}           
-// 				}
-
+ 
          }
 }
 
