@@ -120,7 +120,7 @@ function owasp_injection_page_callback(){
 	
 	// Call theme() function, so that Drupal includes the custom-page.tpl.php template
 	
-	return theme('drupal_owasp_top10_injection_template');
+	return theme('drupal_owasp_top10_injection_template',array('request' => 'SELECT * FFROM users WHERE username=\'$usernname\' AND password=\'$password\''));
 }
 
 
@@ -137,6 +137,7 @@ function drupal_owasp_top10_theme(){
 			'drupal_owasp_top10_injection_template' => $base+array(
 					// file name will be custom-page.tpl.php
 					'template' => 'drupal_owasp_top10_injection',
+					'variables' => array('request' => NULL,),
 			),
 			
 			'drupal_owasp_top10_csrf_template' => $base+array(
