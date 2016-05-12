@@ -120,7 +120,7 @@ function owasp_injection_page_callback(){
 	
 	// Call theme() function, so that Drupal includes the custom-page.tpl.php template
 	
-	return theme('drupal_owasp_top10_template');
+	return theme('drupal_owasp_top10_injection_template');
 }
 
 
@@ -128,13 +128,18 @@ function owasp_injection_page_callback(){
  * Implement hook_theme().
 */
 function drupal_owasp_top10_theme(){
-	return array(
-			'drupal_owasp_top10_template' => array(
+	
+	$module_path = drupal_get_path('module', 'drupal_owasp_top10');
+	$base = array(            // Dossier contenant les fichiers tpl du module
+			'path' => "$module_path/theme",
+	);
+	return array(// template = Le fichier tpl associé au block / variables = La variables transférer à ce fichier
+			'drupal_owasp_top10_injection_template' => $base+array(
 					// file name will be custom-page.tpl.php
-					'template' => 'drupal_owasp_top10',
+					'template' => 'drupal_owasp_top10_injection',
 			),
 			
-			'drupal_owasp_top10_csrf_template' => array(
+			'drupal_owasp_top10_csrf_template' => $base+array(
 					// file name will be custom-page.tpl.php
 					'template' => 'drupal_owasp_top10_csrf',
 			),
