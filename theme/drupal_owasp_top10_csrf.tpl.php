@@ -1,15 +1,7 @@
-<style>
-mark { 
-    background-color: red;
-    color: white;
-}
-</style>
 
-		
-			<div class="panel-heading">
-				<h3 class="panel-title">Information</h3>
-			</div>
-			<div class="panel-body">
+<h3>Information</h3>
+	
+			<div >
 				Here we have a table containing a list of users accessible to admin.
 				<br>
 				The admin can delete any user he wants. The aim of this demonstration is to show how an attacker 
@@ -25,11 +17,11 @@ mark {
 		
 
 		
-			<div class="panel-heading"> 
+			<div > 
 				<a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOne"> HTML Code </a>
 			</div>
 			
-				<div class="panel-body">
+				<div >
     				<pre class="language-markup"><code><?php echo "html code variable" ; ?></code></pre>
 				</div>  					
 			
@@ -38,11 +30,11 @@ mark {
 
 
 
-			<div class="panel-heading"> 
+			<div > 
 				List of users
 			</div>
-			<div class="panel-body">
-				<table class="table table-striped">
+			<div >
+				<table >
 
 					<thead>
 						<tr>
