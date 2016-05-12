@@ -48,16 +48,16 @@
 						<?php foreach ($users as $user): ?>
 						<tr>
 							<td>
-								<?php echo $user->username ; ?>
+								<?php print $user->username ; ?>
 							</td>
 							<td>
-								<?php echo $user->first_name ;?>
+								<?php print $user->first_name ;?>
 							</td>
 							<td>
-								<?php echo $user->last_name ;?>
+								<?php print $user->last_name ;?>
 							</td>
 							<td>
-								<?php echo $user['address'] ?>
+								<?php print $user->address ; ?>
 							</td>
 							<td>
 								<FORM method="POST" action="/demo_csrf.php?csrf=safe">
