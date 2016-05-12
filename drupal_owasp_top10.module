@@ -51,6 +51,7 @@ $items['owasp/A1-Injection'] = array(
 $items['owasp/Reflected XSS'] = array(
 	'title' => 'Reflected XSS',        
 	'access callback' => TRUE,
+	//This key-value pair determines who can see the new path and content, by providing an array of specific permissions a user must have. Here is a reference page of permissions you may find useful : http://drupal.org/node/132202.
 	'access arguments' => array('access content'),	
 	'page callback' => 'drupal_get_form',
 	'page arguments'=>array('owasp_xss_form'),
@@ -116,11 +117,22 @@ function owasp_csrf_page_callback(){
  
 function owasp_injection_page_callback(){
 	
-	$result = "Sous Drupal, le token anti-csrf 'form_token' est intégré systématiquement dans les formulaires accessibles en mode authentifié. Conformément aux recommandations de 'OWASP CSRF' Drupal utilise le champ 'form_token' pour se prémunir contre les attaques CSRF.<br>Ce jeton (form_token) est lié à la session de l'utilisateur actuel et au 'form_id' du formulaire.<br>Concernant les formulaires anonymes (accessibles en mode non authentifiés), ils sont vulnérables aux attaques CSRF étant donné l'bsencce de session. De toutes façon cela n'a aucun sens d'avoir des formulaires anonymes ou d'implémenter un token anti-csrf pour ces derniers.";
+	// Call theme() function, so that Drupal includes the custom-page.tpl.php template
 	
-	return $result;
+	return theme('drupal_owasp_top10_template');
 }
 
- 
+
+/*
+ * Implement hook_theme().
+*/
+function drupal_owasp_top10_theme(){
+	return array(
+			'drupal_owasp_top10_template' => array(
+					// file name will be custom-page.tpl.php
+					'template' => 'drupal_owasp_top10',
+			),
+	);
+}
  
 
