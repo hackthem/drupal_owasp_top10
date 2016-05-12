@@ -5,12 +5,7 @@ mark {
 }
 </style>
 
-
-<div class="container-fluid">
-
-	<div class="col-md-6 col-md-offset-3">
-
-		<div class="panel panel-info">
+		
 			<div class="panel-heading">
 				<h3 class="panel-title">Information</h3>
 			</div>
@@ -27,23 +22,22 @@ mark {
 				<pre class="language-markup"><code><?php echo "malicous code variable" ;?></code></pre>
 				Here the attack will occur because an anti-csrf token is not implemented.
 			</div>
-		</div>
+		
 
-		<div class="panel panel-default">
+		
 			<div class="panel-heading"> 
 				<a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOne"> HTML Code </a>
 			</div>
-			<div id="collapseOne" class="panel-collapse collapse">
+			
 				<div class="panel-body">
     				<pre class="language-markup"><code><?php echo "html code variable" ; ?></code></pre>
 				</div>  					
-			</div>
-	    </div>
+			
+	   
 
-	</div>
 
-	<div class="col-md-6 col-md-offset-3">
-		<div class="panel panel-info">
+
+
 			<div class="panel-heading"> 
 				List of users
 			</div>
@@ -86,23 +80,11 @@ mark {
 					</tbody>
 				</table>
 			</div>
-		</div>
-	</div>
 
-	<div class="col-md-6 col-md-offset-3">
 
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				PHP Code with ANTI CSRF TOKEN
-			</div>
-			<div class="panel-body">		
-    			<pre class="language-php"><code><?php echo "php_code"; ?></code></pre>
-    		</div>
-	    </div>        
-
-	</div>
+	
 
 	 
-</div>
+
 
 
