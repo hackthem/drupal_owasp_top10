@@ -1,1 +1,126 @@
-ceci est un test 
+<style>
+mark { 
+    background-color: red;
+    color: white;
+}
+</style>
+
+
+<div class="container-fluid">
+
+	<div class="col-md-6 col-md-offset-3">
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Information</h3>
+			</div>
+			<div class="panel-body">
+				Here we have a table containing a list of users accessible to admin.
+				<br>
+				The admin can delete any user he wants. The aim of this demonstration is to show how an attacker 
+				can force the admin to delete a specific user.
+				<br>
+				The attacker will inviter the admin to visit this site :<br>
+				<a href="http://azougarh.abdellah.free.fr/csrf_safe.php">http://hackthem.free.fr/csrf_safe.php</a>
+				<br>
+				The malicious code is bellow :
+				<pre class="language-markup"><code><?php echo $malicious_code ;?></code></pre>
+				Here the attack will not occur because an anti-csrf token is implemented.
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading"> 
+				<a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOne"> HTML Code </a>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse">
+				<div class="panel-body">
+    				<pre class="language-markup"><code><?php echo $html_code?></code></pre>
+				</div>  					
+			</div>
+	    </div>
+
+	</div>
+
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-info">
+			<div class="panel-heading"> 
+				List of users
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+		        <?php if ($error_token==true){
+		        	echo "<br>";
+		        	echo"<h4><mark>Error Token Validation !!!</mark></h4>";
+		        	echo "<br>";
+		        	 
+		        	echo "<script>alert('Error Token Validation !!!');</script>" ;
+		        }?>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>LOGIN</th>
+							<th>DATE CREATION</th>
+							<th>DESCRIPTION</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($users as $user): ?>
+						<tr>
+							<td>
+								<?php echo $user['id'] ?>
+							</td>
+							<td>
+								<?php echo $user['login'] ?>
+							</td>
+							<td>
+								<?php echo $user['cdate']?>
+							</td>
+							<td>
+								<?php echo $user['description'] ?>
+							</td>
+							<td>
+								<FORM method="POST" action="/demo_csrf.php?csrf=safe">
+									<INPUT type="hidden" name="demo_csrf_safe_action" value="delete"> 
+									<INPUT type="hidden" name="demo_csrf_safe_id" value="<?php echo $user['id']?>"> 
+									<?php $csrf = new phpsec\CSRF();?>
+									<?php $csrf->generateHiddenField(); ?>
+									<INPUT type="submit" value="delete" >
+								</FORM>
+							</td>
+						</tr>
+						<?php endforeach ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6 col-md-offset-3">
+
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				PHP Code with ANTI CSRF TOKEN
+			</div>
+			<div class="panel-body">		
+    			<pre class="language-php"><code><?php echo $php_code; ?></code></pre>
+    		</div>
+	    </div>        
+
+	</div>
+
+	<div class="col-md-6 col-md-offset-3">
+
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				OPF Configuration File
+			</div>
+			<div class="panel-body">
+				<pre class="language-php"><code><?php echo $php_code_opf_configuration; ?></code></pre>
+			</div>
+		</div>
+				
+	</div>
+</div>
+
+
