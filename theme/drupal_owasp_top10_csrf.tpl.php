@@ -35,7 +35,7 @@ mark {
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse">
 				<div class="panel-body">
-    				<pre class="language-markup"><code><?php echo "html code variable"?></code></pre>
+    				<pre class="language-markup"><code><?php echo "html code variable" ; ?></code></pre>
 				</div>  					
 			</div>
 	    </div>
@@ -52,23 +52,23 @@ mark {
 
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>LOGIN</th>
-							<th>DATE CREATION</th>
-							<th>DESCRIPTION</th>
+							<th>USERNAME</th>
+							<th>FIRST NAME</th>
+							<th>LAST NAME</th>
+							<th>ADDRESS</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($users as $user): ?>
 						<tr>
 							<td>
-								<?php echo $user['username'] ?>
+								<?php echo $user->username ; ?>
 							</td>
 							<td>
-								<?php echo $user['first_name'] ?>
+								<?php echo $user->first_name ;?>
 							</td>
 							<td>
-								<?php echo $user['last_name']?>
+								<?php echo $user->last_name ;?>
 							</td>
 							<td>
 								<?php echo $user['address'] ?>
@@ -76,9 +76,8 @@ mark {
 							<td>
 								<FORM method="POST" action="/demo_csrf.php?csrf=safe">
 									<INPUT type="hidden" name="demo_csrf_safe_action" value="delete"> 
-									<INPUT type="hidden" name="demo_csrf_safe_id" value="<?php echo $user['id']?>"> 
-									<?php $csrf = new phpsec\CSRF();?>
-									<?php $csrf->generateHiddenField(); ?>
+									<INPUT type="hidden" name="user_id" value="<?php echo $user->user_id ;?>"> 
+									 
 									<INPUT type="submit" value="delete" >
 								</FORM>
 							</td>
@@ -103,18 +102,7 @@ mark {
 
 	</div>
 
-	<div class="col-md-6 col-md-offset-3">
-
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				OPF Configuration File
-			</div>
-			<div class="panel-body">
-				<pre class="language-php"><code><?php echo "php_code_opf_configuration"; ?></code></pre>
-			</div>
-		</div>
-				
-	</div>
+	 
 </div>
 
 
