@@ -112,7 +112,16 @@ function owasp_csrf_page_callback(){
 // 	$result = "Sous Drupal, le token anti-csrf 'form_token' est intégré systématiquement dans les formulaires accessibles en mode authentifié. Conformément aux recommandations de 'OWASP CSRF' Drupal utilise le champ 'form_token' pour se prémunir contre les attaques CSRF.<br>Ce jeton (form_token) est lié à la session de l'utilisateur actuel et au 'form_id' du formulaire.<br>Concernant les formulaires anonymes (accessibles en mode non authentifiés), ils sont vulnérables aux attaques CSRF étant donné l'bsencce de session. De toutes façon cela n'a aucun sens d'avoir des formulaires anonymes ou d'implémenter un token anti-csrf pour ces derniers.";
 
 // 	return $result;
-	return theme('drupal_owasp_top10_csrf_template');
+
+	
+	db_set_active('owasp');	
+	 
+	$query = db_query("SELECT * FROM users");
+	 
+	db_set_active();
+	 
+	$users = $query->fetchAll();
+	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users));
 
 }
  
@@ -137,12 +146,13 @@ function drupal_owasp_top10_theme(){
 			'drupal_owasp_top10_injection_template' => $base+array(
 					// file name will be custom-page.tpl.php
 					'template' => 'drupal_owasp_top10_injection',
-					'variables' => array('request' => NULL,),
+					'variables' => array('items' => NULL,),
 			),
 			
 			'drupal_owasp_top10_csrf_template' => $base+array(
 					// file name will be custom-page.tpl.php
 					'template' => 'drupal_owasp_top10_csrf',
+					'variables' => array('items' => NULL,),
 			),
 	);
 }

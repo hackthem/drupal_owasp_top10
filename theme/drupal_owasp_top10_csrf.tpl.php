@@ -21,11 +21,11 @@ mark {
 				can force the admin to delete a specific user.
 				<br>
 				The attacker will inviter the admin to visit this site :<br>
-				<a href="http://azougarh.abdellah.free.fr/csrf_safe.php">http://hackthem.free.fr/csrf_safe.php</a>
+				<a href="http://hackthem.free.fr/csrf_safe.php">http://hackthem.free.fr/csrf_safe.php</a>
 				<br>
 				The malicious code is bellow :
-				<pre class="language-markup"><code><?php echo $malicious_code ;?></code></pre>
-				Here the attack will not occur because an anti-csrf token is implemented.
+				<pre class="language-markup"><code><?php echo "malicous code variable" ;?></code></pre>
+				Here the attack will occur because an anti-csrf token is not implemented.
 			</div>
 		</div>
 
@@ -35,7 +35,7 @@ mark {
 			</div>
 			<div id="collapseOne" class="panel-collapse collapse">
 				<div class="panel-body">
-    				<pre class="language-markup"><code><?php echo $html_code?></code></pre>
+    				<pre class="language-markup"><code><?php echo "html code variable"?></code></pre>
 				</div>  					
 			</div>
 	    </div>
@@ -49,13 +49,7 @@ mark {
 			</div>
 			<div class="panel-body">
 				<table class="table table-striped">
-		        <?php if ($error_token==true){
-		        	echo "<br>";
-		        	echo"<h4><mark>Error Token Validation !!!</mark></h4>";
-		        	echo "<br>";
-		        	 
-		        	echo "<script>alert('Error Token Validation !!!');</script>" ;
-		        }?>
+
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -68,16 +62,16 @@ mark {
 						<?php foreach ($users as $user): ?>
 						<tr>
 							<td>
-								<?php echo $user['id'] ?>
+								<?php echo $user['username'] ?>
 							</td>
 							<td>
-								<?php echo $user['login'] ?>
+								<?php echo $user['first_name'] ?>
 							</td>
 							<td>
-								<?php echo $user['cdate']?>
+								<?php echo $user['last_name']?>
 							</td>
 							<td>
-								<?php echo $user['description'] ?>
+								<?php echo $user['address'] ?>
 							</td>
 							<td>
 								<FORM method="POST" action="/demo_csrf.php?csrf=safe">
@@ -103,7 +97,7 @@ mark {
 				PHP Code with ANTI CSRF TOKEN
 			</div>
 			<div class="panel-body">		
-    			<pre class="language-php"><code><?php echo $php_code; ?></code></pre>
+    			<pre class="language-php"><code><?php echo "php_code"; ?></code></pre>
     		</div>
 	    </div>        
 
@@ -116,7 +110,7 @@ mark {
 				OPF Configuration File
 			</div>
 			<div class="panel-body">
-				<pre class="language-php"><code><?php echo $php_code_opf_configuration; ?></code></pre>
+				<pre class="language-php"><code><?php echo "php_code_opf_configuration"; ?></code></pre>
 			</div>
 		</div>
 				
