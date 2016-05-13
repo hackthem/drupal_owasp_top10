@@ -137,11 +137,14 @@ function owasp_csrf_page_callback(){
 function owasp_csrf_delete_user_callback($user_id){
 
 	db_set_active('owasp');
+	//must ude db_selete() see: http://alvinalexander.com/drupal/drupal-7-sql-delete-db_delete-form-module-example
+	//$query = db_query("DELETE FROM users WHERE user_id=:user_id",array(':user_id'=>$user_id));
+	db_delete('users')
+	->condition('user_id', $user_id) //WHERE clause
+	->execute();
 	
-	$query = db_query("DELETE FROM users WHERE user_id=:user_id",array(':user_id'=>$user_id));
-	
-	$query2 = db_query("SELECT * FROM users");	 	
-	$users = $query2->fetchAll();
+	$query = db_query("SELECT * FROM users");	 	
+	$users = $query->fetchAll();
 	
 	db_set_active();
 	
