@@ -75,7 +75,7 @@
 									
 									<?php if($is_admin){?>
 									
-									<INPUT type="submit" value="delete" >
+									<INPUT type="submit" value="delete" disabled='disabled'>
 									<?php } else {?>
 									<INPUT type="submit" value="delete" disabled='disabled'>
 									<?php }  ?>
