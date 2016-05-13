@@ -71,7 +71,7 @@
 							<td>
 								<FORM method="GET" action="<?php echo '/owasp/CSRF/delete/user/'.$user->user_id ;?>">
 
-									<INPUT type="hidden" name="csrf_token" value="<?php drupal_get_token('owasp_csrf_delete_user' . $user->user_id)?>">
+									<INPUT type="hidden" name="csrf_token" value="<?php print drupal_get_token('owasp_csrf_delete_user' . $user->user_id)?>">
 									<INPUT type="submit" value="delete" >
 								</FORM>
 							</td>
