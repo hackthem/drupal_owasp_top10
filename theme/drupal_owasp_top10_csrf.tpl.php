@@ -43,6 +43,7 @@
 
 					<thead>
 						<tr>
+							<th>USER_ID</th>
 							<th>USERNAME</th>
 							<th>FIRST NAME</th>
 							<th>LAST NAME</th>
@@ -52,6 +53,9 @@
 					<tbody>
 						<?php foreach ($users as $user): ?>
 						<tr>
+							<td>
+								<?php print $user->user_id ; ?>
+							</td>
 							<td>
 								<?php print $user->username ; ?>
 							</td>
