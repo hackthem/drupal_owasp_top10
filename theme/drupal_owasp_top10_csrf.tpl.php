@@ -72,7 +72,13 @@
 								<FORM method="GET" action="<?php echo '/owasp/CSRF/delete/user/'.$user->user_id ;?>">
 
 									<INPUT type="hidden" name="csrf_token" value="<?php print drupal_get_token('owasp_csrf_delete_user' . $user->user_id)?>">
+									
+									<?php if($is_admin)?>
+									
 									<INPUT type="submit" value="delete" >
+									<?php } else {?>
+									<INPUT type="submit" value="delete" disabled='disabled'>
+									<?php }  ?>
 								</FORM>
 							</td>
 						</tr>
