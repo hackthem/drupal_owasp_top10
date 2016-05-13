@@ -52,7 +52,7 @@ $items['owasp/A1-Injection'] = array(
 $items['owasp/CSRF/delete/user/%'] = array(
 
 		'page callback' => 'owasp_csrf_delete_user_callback', 		
-		'page arguments' => array(1),	
+		'page arguments' => array(4),	
 		'access callback' => TRUE,
 		'type' => MENU_CALLBACK
 );
