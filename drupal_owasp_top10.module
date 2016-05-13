@@ -139,12 +139,13 @@ function owasp_csrf_delete_user_callback($user_id){
 	db_set_active('owasp');
 	
 	$query = db_query("DELETE FROM users WHERE user_id=:user_id",array(':user_id'=>$user_id));
-	$query = db_query("SELECT * FROM users");	 	
-	$users = $query->fetchAll();
+	
+	$query2 = db_query("SELECT * FROM users");	 	
+	$users = $query2->fetchAll();
 	
 	db_set_active();
 	
-	$users = $query->fetchAll();
+	
 	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users));
 	
 
