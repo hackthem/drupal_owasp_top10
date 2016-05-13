@@ -47,6 +47,14 @@ $items['owasp/A1-Injection'] = array(
 		'access callback' => TRUE,
 		'type' => MENU_NORMAL_ITEM
 );
+
+//delete user
+$items['owasp/CSRF/delete/user/%'] = array(
+
+		'page callback' => 'owasp_csrf_delete_user_callback', 		
+		'page arguments' => array(1),		
+		'type' => MENU_CALLBACK
+);
  
 $items['owasp/Reflected XSS'] = array(
 	'title' => 'Reflected XSS',        
@@ -124,6 +132,22 @@ function owasp_csrf_page_callback(){
 	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users));
 
 }
+
+function owasp_csrf_delete_user_callback($user_id){
+
+	db_set_active('owasp');
+	
+	$query = db_query("DELETE FROM users WHERE user_id=:user_id",array(':user_id'=>$user_id));
+	$query = db_query("SELECT * FROM users");	 	
+	$users = $query->fetchAll();
+	
+	db_set_active();
+	
+	$users = $query->fetchAll();
+	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users));
+	
+
+}
  
 function owasp_injection_page_callback(){
 	
@@ -131,6 +155,8 @@ function owasp_injection_page_callback(){
 	
 	return theme('drupal_owasp_top10_injection_template',array('request' => 'SELECT * FFROM users WHERE username=\'$usernname\' AND password=\'$password\''));
 }
+
+
 
 
 /*

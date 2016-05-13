@@ -60,9 +60,8 @@
 								<?php print $user->address ; ?>
 							</td>
 							<td>
-								<FORM method="POST" action="/demo_csrf.php?csrf=safe">
-									<INPUT type="hidden" name="demo_csrf_safe_action" value="delete"> 
-									<INPUT type="hidden" name="user_id" value="<?php echo $user->user_id ;?>"> 
+								<FORM method="GET" action="<?php echo '/owasp/CSRF/delete/user/'.$user->user_id ;?>">
+
 									 
 									<INPUT type="submit" value="delete" >
 								</FORM>
