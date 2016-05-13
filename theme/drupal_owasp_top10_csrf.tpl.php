@@ -73,7 +73,7 @@
 
 									<INPUT type="hidden" name="csrf_token" value="<?php print drupal_get_token('owasp_csrf_delete_user' . $user->user_id)?>">
 									
-									<?php if($is_admin)?>
+									<?php if($is_admin){?>
 									
 									<INPUT type="submit" value="delete" >
 									<?php } else {?>
