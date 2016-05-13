@@ -135,6 +135,10 @@ function owasp_csrf_page_callback(){
 }
 
 function owasp_csrf_delete_user_callback($user_id){
+	
+	if (empty($_GET['csrf_token']) || !drupal_valid_token($_GET['csrf_token'], 'owasp_csrf_delete_user' . $user_id)) {
+		return MENU_ACCESS_DENIED;
+	}
 
 	db_set_active('owasp');
 	//must ude db_selete() see: http://alvinalexander.com/drupal/drupal-7-sql-delete-db_delete-form-module-example
