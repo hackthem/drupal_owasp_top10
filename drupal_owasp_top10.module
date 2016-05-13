@@ -149,7 +149,7 @@ function owasp_csrf_delete_user_callback($user_id){
 	db_set_active();
 	
 	
-	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users));
+	return theme('drupal_owasp_top10_csrf_template',array('users'=>$users,'user_id'=>$user_id));
 	
 
 }

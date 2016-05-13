@@ -22,7 +22,7 @@
 			</div>
 			
 				<div >
-    				<pre class="language-markup"><code><?php echo "html code variable" ; ?></code></pre>
+    				<pre class="language-markup"><code><?php print "The user with the id=".$user_id." was deleted" ; ?></code></pre>
 				</div>  					
 			
 	   
