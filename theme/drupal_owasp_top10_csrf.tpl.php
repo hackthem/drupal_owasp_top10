@@ -22,7 +22,7 @@
 			</div>
 			
 				<div >
-    				<pre class="language-markup"><code><?php print "The user with the id=".$user_id." was deleted" ; ?></code></pre>
+    				<pre class="language-markup"><code><?php print "HTML code" ; ?></code></pre>
 				</div>  					
 			
 	   
@@ -33,6 +33,11 @@
 			<div > 
 				List of users
 			</div>
+			<?php if (!empty($user_id)) {?>
+			<div >
+    				<pre class="language-markup"><code><?php print "The user with the id=".$user_id." was deleted" ; ?></code></pre>
+			</div>  
+			<?php }?>
 			<div >
 				<table >
 
